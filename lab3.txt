@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char input[81];
+    int i = 0;
+    
+    printf("введите строку с произвольными символами (до 80 символов): ");
+    scanf("%81[^\n]", input);
+
+    while (input[i] != '\0') {
+        input[i] = toupper(input[i]);
+        i++;
+    }
+    
+    printf("Новая строка: %s\n", input);
+    
+    return 0;
+}
