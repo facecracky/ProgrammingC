@@ -3,26 +3,27 @@
 int main() {
     int N = 3;
     double arr[N][N];
-    for(int i = 0; i < N; i++){
-        for(int j = 0; j < N; j++){
-            //scanf("%lf", &(arr[i][j]));
-            arr[i][j] = 1.0*(i*3 + j);
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            scanf("%lf", &arr[i][j]);
         }
     }
-    double sum = 0;
-    for (int i = 0; i < N; i++){
-        sum += arr[i][i];
-    }
-    for(int i = 0; i < N; i++){
-        for(int j = 0; j < N; j++){
-            printf("%lf", arr[i][j]);
+
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            printf("%lf ", arr[i][j]);
         }
+        printf("\n");  
     }
-    double sum2 = 0;
-    for (int i = 0; i < N; i++){
-        sum2 += arr[1][3] + arr[2][2] + arr[3][1];
+    double sum_main_diag = 0;
+    for (int i = 0; i < N; i++) {
+        sum_main_diag += arr[i][i];
     }
-    printf("%lf", sum);
-    printf("%lf", sum2);
+    printf("Сумма главной: %lf\n", sum_main_diag);
+    double sum_secondary_diag = 0;
+    for (int i = 0; i < N; i++) {
+        sum_secondary_diag += arr[i][N - 1 - i];
+    }
+    printf("Сумма побочной: %lf\n", sum_secondary_diag);
     return 0;
 }
