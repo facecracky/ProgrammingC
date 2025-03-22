@@ -2,30 +2,37 @@
 #include <math.h>
 
 int main() {
+    int choice;
 
-    double a, b, c;
-    double disk, x1, x2;
+    do {
+        double a, b, c;
+        double disk, x1, x2;
 
-    printf("введи a: ");
-    scanf("%lf", &a);
-    printf(" b: ");
-    scanf("%lf", &b);
-    printf(" c: ");
-    scanf("%lf", &c);
+        printf("Введите a: ");
+        scanf("%lf", &a);
+        printf("Введите b: ");
+        scanf("%lf", &b);
+        printf("Введите c: ");
+        scanf("%lf", &c);
 
-    disk = b * b - 4 * a * c;
+        disk = b * b - 4 * a * c;
 
-    if (disk >= 0) {
-        x1 = (-b + sqrt(disk)) / (2 * a);
-        x2 = (-b - sqrt(disk)) / (2 * a);
+        if (disk >= 0) {
+            x1 = (-b + sqrt(disk)) / (2 * a);
+            x2 = (-b - sqrt(disk)) / (2 * a);
 
-        printf("корни:\n");
-        printf("x1 = %lf \n", x1);
-        printf("x2 = %lf \n", x2);
-    } else {
+            printf("Корни:\n");
+            printf("x1 = %lf \n", x1);
+            printf("x2 = %lf \n", x2);
+        } else {
+            printf("Нет действительных корней.\n");
+        }
 
-        printf("нет решения \n");
-    }
+        printf("Введите 1, чтобы вычислить корни заново, или 0 для выхода: ");
+        scanf("%d", &choice);
 
+    } while (choice == 1);
+
+    printf("Программа завершена.\n");
     return 0;
 }
