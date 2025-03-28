@@ -5,15 +5,14 @@ int main() {
     char input[81];
     int i = 0;
     
-    printf("введите строку с произвольными символами (до 80 символов): ");
+    printf("Vvedite do 80 simvolov: ");
     scanf("%81[^\n]", input);
-
+    
     while (input[i] != '\0') {
         input[i] = toupper(input[i]);
         i++;
     }
-    
-    printf("Новая строка: %s\n", input);
+    printf("Newstrouke: %s\n", input);
     
     return 0;
 }
