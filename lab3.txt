@@ -6,13 +6,18 @@ int main() {
     int i = 0;
     
     printf("Vvedite do 80 simvolov: ");
-    scanf("%81[^\n]", input);
+    scanf("%80[^\n]", input);
     
     while (input[i] != '\0') {
-        input[i] = toupper(input[i]);
+        if (input[i] == '?') {
+            input[i] = '!';
+        } else {
+            input[i] = toupper(input[i]);
+        }
         i++;
     }
-    printf("Newstrouke: %s\n", input);
+    
+    printf("New stroka: %s\n", input);
     
     return 0;
 }
