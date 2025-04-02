@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main(){
+    char input[81];
+    int i = 0;
+    
+    printf("Vvedi do 80 simvolov: ");
+    scanf("%81[^\n]", input);
+    
+    while(input[i] != '\0'){
+        if(input[i] == 'a'){
+            input[i] = 'A';
+        }
+        if(input[i]=='b'){
+            input[i]='B';
+        }
+        else{
+            if(input[i] =='?'){
+                input[i] = '!';
+            }
+        }
+        i++;
+    }
+    printf("NEWSTR: %s\n", input);
+    
+    return 0;
+}
