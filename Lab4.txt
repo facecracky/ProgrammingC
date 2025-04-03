@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+int main(){
+    double a, b, c;
+    double p, s;
+    double poly_p;
+    
+    printf("vvedote a: ");
+    scanf("%lf", &a);
+    printf("vvedote b: ");
+    scanf("%lf", &b);
+    printf("vvedote c: ");
+    scanf("%lf", &c);
+    
+    if(a + b <= c || a + c <= b || b + c <= a){
+        do{
+            printf("vvedote a: ");
+            scanf("%lf", &a);
+            printf("vvedote b: ");
+            scanf("%lf", &b);
+            printf("vvedote c: ");
+            scanf("%lf", &c);
+        } while (a + b > c && a + c > b && b + c > a);
+    }
+    else{
+    p = a+b+c;;
+    poly_p = (a+b+c)/2;
+    s = sqrt(poly_p*(poly_p-a)*(poly_p-b)*(poly_p-c));
+    printf("s: %lf \n", s);
+    printf("p: %lf \n", p);
+    }
+    return 0;
+}
