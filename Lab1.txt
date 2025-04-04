@@ -12,7 +12,7 @@ int main() {
         scanf("%lf", &a);
         printf("Введите b: ");
         scanf("%lf", &b);
-        printf("Введите c: ");
+        printf("Вdведите c: ");
         scanf("%lf", &c);
 
         disk = b * b - 4 * a * c;
