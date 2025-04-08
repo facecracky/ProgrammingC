@@ -13,7 +13,7 @@ int main(){
     
     while(!kort(a, b, c)){
         if(!kort(a, b, c)){
-            printf("Storoni ne verni \n");
+            printf("Storoni ne vernlb \n");
             printf("Vvedite storoni zanovo:");
             scanf("%lf %lf %lf", &a,&b,&c);
         }
