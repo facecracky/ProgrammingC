@@ -5,32 +5,36 @@ int kort(double a, double b, double c);
 double p(double a, double b, double c);
 double s(double a, double b, double c);
 
-int main() {
+int main(){
     double a, b, c;
-
-    printf("vvedi storoni treugol'nika (a b c): ");
-    scanf("%lf %lf %lf", &a, &b, &c);
-
-    if (!kort(a, b, c)) {
-        printf("\n");
-        return 1;
+    
+    printf("Vvedite storoni: ");
+    scanf("%lf %lf %lf", &a ,&b ,&c);
+    
+    while(!kort(a, b, c)){
+        if(!kort(a, b, c)){
+            printf("Storoni ne verni \n");
+            printf("Vvedite storoni zanovo:");
+            scanf("%lf %lf %lf", &a,&b,&c);
+        }
     }
-
     printf("P: %lf \n", p(a, b, c));
     printf("S: %lf \n", s(a, b, c));
-
     return 0;
 }
 
-int kort(double a, double b, double c) {
-    return (a + b > c) && (a + c > b) && (b + c > a) && (a > 0) && (b > 0) && (c > 0);
+int kort(double a, double b, double c){
+    return(a + b > c) && (a + c > b) && (c + b > a);
 }
 
 double p(double a, double b, double c) {
     return a + b + c;
 }
 
-double s(double a, double b, double c) {
-    double py = p(a, b, c) / 2;
-    return sqrt(py * (py - a) * (py - b) * (py - c));
+
+double s(double a, double b, double c){
+    double py = p(a, b, c)/2;
+    return sqrt(py*(py - a)*(py - b)*(py - c));
 }
+
+
