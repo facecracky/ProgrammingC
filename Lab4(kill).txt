@@ -1,10 +1,9 @@
+//main.c
+
 #include <stdio.h>
 #include <math.h>
-
-int kort(double a, double b, double c);
-double p(double a, double b, double c);
-double s(double a, double b, double c);
-
+#include "triangle.h"
+#include <stdbool.h>
 int main(){
     double a, b, c;
     
@@ -20,11 +19,28 @@ int main(){
     }
     printf("P: %lf \n", p(a, b, c));
     printf("S: %lf \n", s(a, b, c));
+    printf("H: %lf \n", h(a, b, c));
     return 0;
 }
 
-int kort(double a, double b, double c){
-    return(a + b > c) && (a + c > b) && (c + b > a);
+//triangle.h
+
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+bool kort(double a, double b, double c);
+double p(double a, double b, double c);
+double s(double a, double b, double c);
+double h(double a, double b, double c);
+
+//triangle.c
+
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+bool kort(double a, double b, double c){
+    return (a + b > c) && (a + c > b) && (c + b > a);
 }
 
 double p(double a, double b, double c) {
@@ -37,4 +53,8 @@ double s(double a, double b, double c){
     return sqrt(py*(py - a)*(py - b)*(py - c));
 }
 
-
+double h(double a, double b, double c){
+    double py = p(a, b, c)/2;
+    double s = sqrt(py*(py - a)*(py - b)*(py - c));
+    return (2*(s))/a;
+}
