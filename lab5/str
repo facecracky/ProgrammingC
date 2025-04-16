@@ -1,1 +1,37 @@
-main
+#include <stdio.h>
+#include <stdlib.h>
+#include 'mtx.h'
+
+int main() {
+    int n;
+    printf("N: ");
+    scanf("%d", &n);
+
+    double **A = malloc(n * sizeof(double*));
+    double **B = malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++) {
+        A[i] = malloc(n * sizeof(double));
+        B[i] = malloc(n * sizeof(double));
+    }
+    
+    printf(" A:\n");
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%lf", &A[i][j]);
+
+    printf(" B:\n");
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%lf", &B[i][j]);
+    
+    char option;
+    printf("Opciya (+, -, *): ");
+    scanf(" %c", &option);
+    
+    double **C = malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++)
+        C[i] = malloc(n * sizeof(double));
+
+    return 0;
+    
+}
