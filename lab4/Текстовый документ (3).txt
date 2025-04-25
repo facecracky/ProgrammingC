@@ -1,0 +1,35 @@
+1.объявляем модули
+2.главный модуль:
+а)вводим стороны
+б)проверяем корректность
+в)выводим
+3.прописываем все модули вычислений
+а)корректность треугольника
+б)периметр
+в)площадь
+
+#include <stdio.h>
+#include <math.h>
+
+kort(double a, double b, double c);
+double p(double a, double b, double c);
+double s(double a, double b, double c);
+
+int main(){
+    
+    printf("Vvedite storoni");
+    scanf("%lf %lf %lf", &a,&b,&c);
+    
+    while(!kort(a, b, c)){
+        if(!kort(a, b, c)){
+            printf("Storoni ne verni \n");
+            printf("Vvedite storoni zanovo:");
+            scanf("%lf %lf %lf", &a,&b,&c);
+        }
+    }
+    printf("P: %lf", p(a, b, c));
+    printf("S: %lf", s(a, b, c));
+    return 0;
+}
+
+int kort(double a, double b, double c);
