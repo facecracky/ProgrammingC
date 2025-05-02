@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    char op;
+    
+    printf("N: ");
+    scanf("%d", &n);
+
+    double** A = (double**)malloc(n * sizeof(double*));
+    double** B = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++) {
+        A[i] = (double*)malloc(n * sizeof(double));
+        B[i] = (double*)malloc(n * sizeof(double));
+    }
+    
+    printf("A:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%lf", &A[i][j]);
+        }
+    }
+
+    printf("B:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%lf", &B[i][j]);
+        }
+    }
+
+
+double** plus(double** A, double** B, int n) {
+    double** C = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++) {
+        C[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    return C;
+}
+
+double** minus(double** A, double** B, int n) {
+    double** C = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++) {
+        C[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] - B[i][j];
+        }
+    }
+    return C;
+}
+
+double** umnozit(double** A, double** B, int n) {
+    double** C = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++) {
+        C[i] = (double*)malloc(n * sizeof(double*));
+        for (int j = 0; j < n; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    return C;
+}
+
+
+    printf("Op (+, -, *): ");
+    scanf(" %c", &op);
+    
+    double** C = NULL;
+    if (op == '+') {
+        C = plus(A, B, n);
+    }
+    else if (op == '-') {
+        C = minus(A, B, n);
+    }
+    else if (op == '*') {
+        C = umnozit(A, B, n);
+    }
+
+
+    printf("C:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%lf ", C[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
