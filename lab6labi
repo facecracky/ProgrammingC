@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int yearfind(char *s) {
+    int n = 0;
+    while (*s) {
+        if (isdigit(*s)){
+        n = n * 10 + (*s++ - '0');
+        }
+        else if (n > 1980){
+        return 1;
+        }
+        else {
+            n = 0; s++; 
+        }
+    }
+    return n > 1980;
+}
+int main() {
+    FILE *input = fopen("untitled.txt", "r");
+    FILE *output = fopen("output.txt", "w");
+    char stroka[123];
+    
+    while (fgets(stroka, 123, input)){
+        if(yearfind(stroka)){
+        fputs(stroka, output);
+        }
+    }
+    fclose(input); fclose(output);
+    return 0;
+}
