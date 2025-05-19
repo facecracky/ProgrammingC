@@ -8,22 +8,24 @@ typedef struct {
 } humen;
 
 int main() {
-    humen tabl[4], newtabl[4];
+    humen tabl[4], tabl2[4];
     for (int i = 0; i < 4; i++) {
         scanf("%s %s %d", tabl[i].name, tabl[i].surname, &tabl[i].year);
-        newtabl[i] = tabl[i];
+        tabl2[i] = tabl[i];
     }
-    for (int i = 0; i < 4; i++) {
-        for (int j = i + 1; j < 4; j++) {
-            if (newtabl[i].year > newtabl[j].year) {
-                humen temp = newtabl[i];
-                newtabl[i] = newtabl[j];
-                newtabl[j] = temp;
+
+    for (int i = 0; i < 4 - 1; i++) {
+        for (int j = 0; j < 4 - i - 1; j++) {
+            if (tabl2[j].year > tabl2[j + 1].year) {
+                humen temp = tabl2[j];
+                tabl2[j] = tabl2[j + 1];
+                tabl2[j + 1] = temp;
             }
         }
     }
+
     for (int i = 0; i < 4; i++) {
-        printf("%s %s %d\n", newtabl[i].name, newtabl[i].surname, newtabl[i].year);
+        printf("%s %s %d\n", tabl2[i].name, tabl2[i].surname, tabl2[i].year);
     }
     return 0;
 }
