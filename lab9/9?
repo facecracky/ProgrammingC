@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LINES 100
+#define MAX_NAME_LEN 50
+
+typedef struct {
+    char name[MAX_NAME_LEN];
+    int year;
+    char gender;
+    float height;
+} Person;
+
+void print_person(const Person *p) {
+    printf("%s %d %c %f\n", p->name, p->year, p->gender, p->height);
+}
+
+int compare_by_name(const void *a, const void *b) {
+    const Person *pa = (const Person *)a;
+    const Person *pb = (const Person *)b;
+    return strcmp(pa->name, pb->name);
+}
+
+int compare_by_year(const void *a, const void *b) {
+    const Person *pa = (const Person *)a;
+    const Person *pb = (const Person *)b;
+    return pa->year - pb->year;
+}
+
+int compare_by_gender(const void *a, const void *b) {
+    const Person *pa = (const Person *)a;
+    const Person *pb = (const Person *)b;
+    return pa->gender - pb->gender;
+}
+
+int compare_by_height(const void *a, const void *b) {
+    const Person *pa = (const Person *)a;
+    const Person *pb = (const Person *)b;
+    if (pa->height < pb->height) return -1;
+    if (pa->height > pb->height) return 1;
+    return 0;
+}
+
+int main() {
+    FILE *file = fopen("input.txt", "r");
+    if (!file) {
+        perror("Failed to open input.txt");
+        return 1;
+    }
+
+    Person people[MAX_LINES];
+    int count = 0;
+
+    while (fscanf(file, "%s %d %c %f", 
+                 people[count].name, 
+                 &people[count].year, 
+                 &people[count].gender, 
+                 &people[count].height) == 4) {
+        count++;
+        if (count >= MAX_LINES) break;
+    }
+    fclose(file);
+
+    int choice;
+    printf("Sort by:\n1. Name\n2. Year\n3. Gender\n4. Height\n");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1: qsort(people, count, sizeof(Person), compare_by_name); break;
+        case 2: qsort(people, count, sizeof(Person), compare_by_year); break;
+        case 3: qsort(people, count, sizeof(Person), compare_by_gender); break;
+        case 4: qsort(people, count, sizeof(Person), compare_by_height); break;
+        default: 
+            printf("Invalid choice\n");
+            return 1;
+    }
+
+    for (int i = 0; i < count; i++) {
+        print_person(&people[i]);
+    }
+
+    return 0;
+}
