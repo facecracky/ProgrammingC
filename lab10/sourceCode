@@ -1,1 +1,39 @@
-12 12 31 412 2
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX(a, n) ({           \
+    int max = a[0];            \
+    for (int i = 1; i < n; i++) \
+        if (a[i] > max) max = a[i]; \
+    max;                      \
+})
+
+int main() {
+    char line[100];
+    printf("Введите числа через пробел: ");
+    if (!fgets(line, sizeof(line), stdin)) {
+        printf("Ошибка ввода\n");
+        return 1;
+    }
+
+
+    int numbers[100];
+    int count = 0;
+
+    char *token = strtok(line, " ");
+    while (token != NULL) {
+        numbers[count++] = atoi(token);
+        token = strtok(NULL, " ");
+    }
+
+    if (count == 0) {
+        printf("Нет введенных чисел\n");
+        return 1;
+    }
+
+    int max_value = MAX(numbers, count);
+    printf("Максимальное число: %d\n", max_value);
+
+    return 0;
+}
