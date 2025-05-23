@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define MAX(a, n) ({           \
     int max = a[0];            \
     for (int i = 1; i < n; i++) \
@@ -11,12 +10,8 @@
 
 int main() {
     char line[100];
-    printf("Введите числа через пробел: ");
-    if (!fgets(line, sizeof(line), stdin)) {
-        printf("Ошибка ввода\n");
-        return 1;
-    }
-
+    printf("Vvedi chisla: ");
+    fgets(line, sizeof(line), stdin);
 
     int numbers[100];
     int count = 0;
@@ -27,13 +22,8 @@ int main() {
         token = strtok(NULL, " ");
     }
 
-    if (count == 0) {
-        printf("Нет введенных чисел\n");
-        return 1;
-    }
-
     int max_value = MAX(numbers, count);
-    printf("Максимальное число: %d\n", max_value);
+    printf("Max chislo: %d\n", max_value);
 
     return 0;
 }
