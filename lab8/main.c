@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #define MAX_PEOPLE 100
 
-
-/* ЗАДАНИЕ 8
-	Создать текстовый файл с записями, включающие имя/фамилию человека, год рождения, пол и рост (в метрах). 
-	Упорядочить элементы по году рождения, име-ни/фамилии, полу или росту. Вывести результат. Указать элемент, по которому следу-ет упорядочить, через консоль.
-	 А также реализовать возможность задавать несколько полей для упорядочивания.*/
 typedef struct{
 	char name[50];
 	int year;
@@ -31,7 +26,6 @@ int main(int argc, char *argv[]) {
 	printf("%s %d %s %lf\n", people[count].name, people[count].year, people[count].sex, people[count].height);
 	count++;
 	
-	
 }
     if(count==0){
     	printf("the file is empty");
@@ -41,15 +35,15 @@ int main(int argc, char *argv[]) {
     fclose(file);
     
     printf("enter the criteria for sorting(name, year, sex, height) separated by a space");
-    char input[100];//буфер для ввода критериев
-    fgets(input, sizeof(input), stdin); // чтение всей строки
-    char *criteria[4];//массив для хранения критериев
+    char input[100];
+    fgets(input, sizeof(input), stdin);
+    char *criteria[4];
     int num_criteria = 0;
 
-    char *token = strtok(input, " \n"); // теперь strtok учитывает и пробелы, и \n
+    char *token = strtok(input, " \n");
     while (token != NULL && num_criteria < 4) {
         criteria[num_criteria++] = token;
-        token = strtok(NULL, " \n"); // продолжаем разбивать по пробелам и \n
+        token = strtok(NULL, " \n");
     }
 
     for ( i = 0; i < count - 1; i++) {
