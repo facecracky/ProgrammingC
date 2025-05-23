@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #define MAX_PEOPLE 100
 
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
     
     fclose(file);
     
-    printf("enter the criteria for sorting(name, year, sex, height) separated by a space");
+    printf("kriteri ocenivaniya");
     char input[100];
     fgets(input, sizeof(input), stdin);
     char *criteria[4];
