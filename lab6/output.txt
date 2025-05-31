@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+#define MAX_LINES 1000
+#define MAX_LINE_LENGTH 256
+
+// Структура для хранения данных о человеке
+typedef struct {
+    char surname[50];
+    char name[50];
+    char patronymic[50];
+    int birth_year;
+    char original_line[MAX_LINE_LENGTH];
+} Person;
+int compare_persons(const void *a, const void *b) {
+    const Person *pa = (const Person *)a;  // Приводим void* к типу Person*
+    const Person *pb = (const Person *)b;  // Аналогично для второго объекта
+    
+    // Сначала сравниваем фамилии
+    int surname_cmp = strcoll(pa->surname, pb->surname);
+    if (surname_cmp != 0) return surname_cmp;  // Если фамилии разные, возвращаем результат
+    
+   
+}
+
+int main() {
+    
+    FILE *input_file = fopen("input.txt", "r");
+    if (input_file == NULL) {
+        perror("Не удалось открыть входной файл");
+        return EXIT_FAILURE;
+    }
+    
+    Person people[MAX_LINES];
+    int count = 0;
+    char line[MAX_LINE_LENGTH];
+    
+    // Читаем файл построчно
+    while (fgets(line, sizeof(line), input_file) != NULL && count < MAX_LINES) {
+        // Парсим строку: Фамилия Имя Отчество ГодРождения
+        if (sscanf(line, "%s %s %s %d", people[count].surname, people[count].name, people[count].patronymic, &people[count].birth_year) == 4) {
+            strcpy(people[count].original_line, line);
+            count++;
+        } else {
+            printf("Ошибка формата строки: %s", line);
+        }
+    }
+    fclose(input_file);
+    
+    // Сортируем записи по алфавиту
+    qsort(people, count, sizeof(Person), compare_persons);
+    
+    // Открываем выходной файл для записи
+    FILE *output_file = fopen("output.txt", "w");
+    if (output_file == NULL) {
+        perror("Не удалось открыть выходной файл");
+        return EXIT_FAILURE;
+    }
+    
+    // Записываем отсортированные строки в выходной файл
+    for (int i = 0; i < count; i++) {
+        fprintf(output_file, "%s", people[i].original_line);
+    }
+    fclose(output_file);
+    
+    printf("Обработка завершена. Результат записан в output.txt\n");
+    return EXIT_SUCCESS;
+}
