@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    srand(time(NULL));
+    time_t t0 = time(0);
+    int n;
+    printf("Vvedite razmernostb matrits n: ");
+    scanf("%d", &n);
+
+    FILE *phile = fopen("input.txt", "wt");
+    for (int k = 0; k < 2; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                fprintf(phile, "%d ", rand());
+            }
+            fprintf(phile, "\n");
+        }
+        if (k == 0)
+            fprintf(phile, "\n");
+    }
+    fclose(phile);
+
+    phile = fopen("input.txt", "rt");
+    int **mat1 = (int **)malloc(sizeof(int *) * n);
+    int **mat2 = (int **)malloc(sizeof(int *) * n);
+    for (int i = 0; i < n; i++) {
+        mat1[i] = (int *)malloc(sizeof(int) * n);
+        mat2[i] = (int *)malloc(sizeof(int) * n);
+    }
+
+    for (int k = 0; k < 2; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                fscanf(phile, "%d", &mat1[i][j]);
+            }
+        }
+        if (k == 0) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    fscanf(phile, "%d", &mat2[i][j]);
+                }
+            }
+        }
+    }
+    fclose(phile);
+    time_t t1 = time(0);
+    double time_in_seconds = difftime(t1, t0);
+    printf("Programma vipolnilas za %f secund\n", time_in_seconds);
+
+    for (int i = 0; i < n; i++) {
+        free(mat1[i]);
+        free(mat2[i]);
+    }
+    free(mat1);
+    free(mat2);
+
+    return 0;
+}
